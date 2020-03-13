@@ -14,14 +14,14 @@
 
 $(document).ready(function () {
 
-    const key = ['AIzaSyCOfiaa35Bhbp9Z2jovn8fNX24JZqmf510'];
-    const playlistId = 'PLZN2wZjY_38CV9i8RUVdpUyF5yw_5tMQs';
-    const URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
+    let key = ['AIzaSyCOfiaa35Bhbp9Z2jovn8fNX24JZqmf510'];
+    let playlistId = 'PLZN2wZjY_38CV9i8RUVdpUyF5yw_5tMQs';
+    let URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
 
-    const options = {
+    let options = {
         part: 'snippet',
-        key: key,
+        key: 'AIzaSyCOfiaa35Bhbp9Z2jovn8fNX24JZqmf510',
         maxResults: 20,
         playlistId: playlistId
     }
@@ -30,7 +30,7 @@ $(document).ready(function () {
 
     function loadVids() {
         $.getJSON(URL, options, function (data) {
-            const id = data.items[0].snippet.resourceId.videoId;
+            let id = data.items[0].snippet.resourceId.videoId;
             mainVid(id);
             resultsLoop(data);
         });
@@ -47,10 +47,10 @@ $(document).ready(function () {
 
         $.each(data.items, function (i, item) {
 
-            const thumb = item.snippet.thumbnails.medium.url;
-            const title = item.snippet.title;
-            const desc = item.snippet.description.substring(0, 100);
-            const vid = item.snippet.resourceId.videoId;
+            let thumb = item.snippet.thumbnails.medium.url;
+            let title = item.snippet.title;
+            let desc = item.snippet.description.substring(0, 100);
+            let vid = item.snippet.resourceId.videoId;
 
 
             $('main').append(`
@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     // CLICK EVENT
     $('main').on('click', 'article', function () {
-        const id = $(this).attr('data-key');
+        let id = $(this).attr('data-key');
         mainVid(id);
     });
 
